@@ -6,13 +6,13 @@ from Models import Injurymodel, DNPmodel, create_pred_table, get_player_info, fu
 import cPickle, sqlite3
 
 
-DBNAME = 'Week5.db'
+DBNAME = 'Week11.db'
 
 
 conn = sqlite3.connect('Web_app/models/{}'.format(DBNAME))
 last_update = int(pd.read_sql_query("SELECT DISTINCT week_num FROM Injuries WHERE season == '2016' ", conn).max()[0])
-pre_selection_week = 6
-update_date = 'Oct 12, 2016'
+pre_selection_week = 11
+update_date = 'November 16, 2016'
 conn.close()
 
 
@@ -29,11 +29,27 @@ def input_page():
                            update_date = update_date)
 
 
-@app.route('/demo1')
-def demo():
-    player = "Cam Newton, CAR, QB"
-    injury_type = "Concussion"
-    curr_week = "6"
+@app.route('/demo1') # TODO Change
+def demo1():
+    player = "Julian Edelman, NWE, WR"
+    injury_type = "Foot"
+    curr_week = "10"
+    status = "Q"
+    return render_template('demo.html',
+                           player=player,
+                           injury_type="Feet",
+                           curr_week=curr_week,
+                           status=status,
+                           pre_selection_week=pre_selection_week,
+                           last_update = last_update,
+                           update_date = update_date)
+
+
+@app.route('/demo2') # TODO Change
+def demo2():
+    player = "Carlos Hyde, SFO, RB"
+    injury_type = "Shoulder"
+    curr_week = "10"
     status = "Q"
     return render_template('demo.html',
                            player=player,
@@ -45,8 +61,24 @@ def demo():
                            update_date = update_date)
 
 
-@app.route('/demo2')
-def demo2():
+@app.route('/demo3') # TODO Change
+def demo3():
+    player = "Rob Gronkowski, NWE, TE"
+    injury_type = "Chest"
+    curr_week = "11"
+    status = "Q"
+    return render_template('demo.html',
+                           player=player,
+                           injury_type=injury_type,
+                           curr_week=curr_week,
+                           status=status,
+                           pre_selection_week=pre_selection_week,
+                           last_update = last_update,
+                           update_date = update_date)
+
+
+@app.route('/demo10')
+def demo10():
     player = "Eddie Lacy, GNB, RB"
     injury_type = "Ankle"
     curr_week = "6"
@@ -61,12 +93,12 @@ def demo2():
                            update_date = update_date)
 
 
-@app.route('/demo3')
-def demo3():
-    player = "Dez Bryant, DAL, WR"
+@app.route('/demo11')
+def demo11():
+    player = "Ben Roethlisberger, PIT, QB"
     injury_type = "Knee"
-    curr_week = "5"
-    status = "D"
+    curr_week = "7"
+    status = "O"
     return render_template('demo.html',
                            player=player,
                            injury_type=injury_type,
@@ -74,6 +106,23 @@ def demo3():
                            status=status,
                            pre_selection_week=pre_selection_week,
                            last_update = last_update,
+                           update_date = update_date)
+
+
+
+@app.route('/demo12')
+def demo12():
+    player = "Carlos Hyde, SFO, RB"
+    injury_type = "Shoulder"
+    curr_week = "7"
+    status = "Q"
+    return render_template('demo.html',
+                           player=player,
+                           injury_type=injury_type,
+                           curr_week=curr_week,
+                           status=status,
+                           pre_selection_week=pre_selection_week,
+                           last_update=last_update,
                            update_date = update_date)
 
 
@@ -107,6 +156,54 @@ def demo5():
                            pre_selection_week=pre_selection_week,
                            last_update = last_update,
                            update_date = update_date)
+
+
+@app.route('/demo7')
+def demo7():
+    player = "Cam Newton, CAR, QB"
+    injury_type = "Concussion"
+    curr_week = "6"
+    status = "Q"
+    return render_template('demo.html',
+                           player=player,
+                           injury_type=injury_type,
+                           curr_week=curr_week,
+                           status=status,
+                           pre_selection_week=pre_selection_week,
+                           last_update=last_update,
+                           update_date = update_date)
+
+@app.route('/demo8')
+def demo8():
+    player = "Eddie Lacy, GNB, RB"
+    injury_type = "Ankle"
+    curr_week = "6"
+    status = "Q"
+    return render_template('demo.html',
+                           player=player,
+                           injury_type=injury_type,
+                           curr_week=curr_week,
+                           status=status,
+                           pre_selection_week=pre_selection_week,
+                           last_update = last_update,
+                           update_date = update_date)
+
+
+@app.route('/demo9')
+def demo9():
+    player = "Dez Bryant, DAL, WR"
+    injury_type = "Knee"
+    curr_week = "5"
+    status = "D"
+    return render_template('demo.html',
+                           player=player,
+                           injury_type=injury_type,
+                           curr_week=curr_week,
+                           status=status,
+                           pre_selection_week=pre_selection_week,
+                           last_update = last_update,
+                           update_date = update_date)
+
 
 
 @app.route('/output', methods=['GET', 'POST'])
